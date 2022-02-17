@@ -10,6 +10,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname,'dist'),
     filename: '[name].bundle.js',
+    // 这个选项会帮助我们在每次构建前清理dist文件夹
+    clean: true
   },
 
   module: {
