@@ -1,11 +1,15 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: {
+    index: './src/manageOutput/index.js',
+    print: './src/manageOutput/print.js'
+  },
 
   output: {
     path: path.resolve(__dirname,'dist'),
-    filename: 'main.js'
+    filename: '[name].bundle.js',
   },
 
   module: {
@@ -19,5 +23,11 @@ module.exports = {
         use: ['style-loader', 'css-loader','sass-loader']
       }
     ]
-  }
+  },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: '管理输出'
+    })
+  ]
 }
