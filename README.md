@@ -1,2 +1,2 @@
-# jes_useage
-学习js跟es的一个项目
+# learnyourWebpack
+学习webpack的初级使用
