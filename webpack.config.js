@@ -1,16 +1,15 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
 module.exports = {
   entry: {
-    index: './src/manageOutput/index.js',
-    print: './src/manageOutput/print.js'
+    index: './src/manageOutput/index.js'
   },
   mode: 'development',
   //应该在配置的第一级就配置devtool以配置sourcemap的方式
   devtool: 'inline-source-map',
   devServer : {
-    static: './dist'
+    static: './dist',
+    hot: true
   },
   output: {
     path: path.resolve(__dirname,'dist'),
