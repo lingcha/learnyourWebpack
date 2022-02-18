@@ -1,0 +1,30 @@
+这将涉及两个实验，第一个实验的内容是：当点击insert按钮时，会调用addItem方法添加一个p标签到网页中，当你点击数次insert按钮时，你会得到一个有很多p标签的网页，此时你通过修改样式来修改这些p标签，
+如果不启用热模块替换，那么网页将会刷新，这会导致所有被添加的item消失，这样你就不代表重新点击按钮来查看修改后的样式。这个实验只要完成以下第一步即可。
+第二个实验的内容是：使用printMe方法来添加一个div标签，并且内容是1000，然后再次点击insert按钮添加数个item，如果你在模块中修改数字1000->2000，那么整个网页将会被重新渲染。此时你需要使用以下
+第二步，更具体的可以查看index.js
+
+热模块替换：
+what: 热模块替换用于替换变动的模块，并且代码改动后只会载入变动的这个模块,而不影响页面的其他模块导致重新渲染
+how to start:
+0. 如果应用了devServer服务
+1. 那么在devServer对象中加入hot:true ->
+    devServer: {
+        static: './dist',
+        hot: true,
+    }
+2. 在发生热模块替换时，更新模块，在入口文件中插入以下代码:
+     if (module.hot) {
+       module.hot.accept('./print.js', function() {
+         console.log('Accepting the updated printMe module!');
+         printMe();
+       })
+     }
+tips：
+    如果只是希望css模块不被重新渲染，那么不需要添加插件，只需要做到上述第一步就行了。
+    如果希望js模块能互相独立，当某个模块发生改变时，更新改变的模块，那么就需要做第二步，并且需要添加插件如下：
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: '管理输出'
+        }),
+        new webpack.HotModuleReplacementPlugin()
+    ]

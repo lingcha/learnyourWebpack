@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 module.exports = {
   entry: {
     index: './src/manageOutput/index.js'
@@ -9,6 +10,7 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer : {
     static: './dist',
+    // 启动热模块替换，即只更新载入变动的模块
     hot: true
   },
   output: {
@@ -34,6 +36,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: '管理输出'
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ]
 }
