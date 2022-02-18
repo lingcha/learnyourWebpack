@@ -6,8 +6,12 @@ module.exports = {
     index: './src/manageOutput/index.js',
     print: './src/manageOutput/print.js'
   },
+  mode: 'development',
   //应该在配置的第一级就配置devtool以配置sourcemap的方式
   devtool: 'inline-source-map',
+  devServer : {
+    static: './dist'
+  },
   output: {
     path: path.resolve(__dirname,'dist'),
     filename: '[name].bundle.js',

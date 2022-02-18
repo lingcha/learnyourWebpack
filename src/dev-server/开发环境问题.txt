@@ -1,0 +1,17 @@
+why：选用webpack提供的开发工具可以在文件更改的情况下重新构建代码，并且自动刷新浏览器以获取最新内容，并且此处选用webpack-dev-server，因为watch mode还是需要手动刷新浏览器。
+
+what（webpack-dev-server）：webpack-dev-server：提供了一个基本的 web server，并且具有 live reloading(实时重新加载) 功能。
+
+how：
+0.将mode改为development
+1.npm install --save-dev webpack-dev-server
+2.在配置对象中添加
+devServer : {
+    static: './dist'
+}
+这个配置将告知dev-server将dist目录下的文件serve到localhost:8080下。
+
+3.使用webpack serve --open命令来开启这个服务，如果没有全局安装webpack webpack-cli，就使用npx webpack serve --open命令
+
+dev-server在编译之后不会写入到任何输出文件。而是将bundle文件保留在内存中，然后将他们交给server使用，就好像他们挂在在server根路径上的真实文件一样。果你的页面希望在其他不同路径中找到 bundle 文件，则可以通过 dev server 配置中的 devMiddleware.publicPath 选项进行修改。
+tips:webpack-dev-server 会从 output.path 中定义的目录为服务提供 bundle 文件，即，文件将可以通过 http://[devServer.host]:[devServer.port]/[output.publicPath]/[output.filename] 进行访问
